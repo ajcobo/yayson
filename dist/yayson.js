@@ -9,19 +9,19 @@ if (typeof window !== "undefined" && window !== null) {
 Q || (Q = ((function() {
   try {
     return typeof require === "function" ? require('q') : void 0;
-  } catch (_error) {}
+  } catch (error) {}
 })()));
 
 _ || (_ = ((function() {
   try {
     return typeof require === "function" ? require('lodash') : void 0;
-  } catch (_error) {}
+  } catch (error) {}
 })()));
 
 _ || (_ = ((function() {
   try {
     return typeof require === "function" ? require('underscore') : void 0;
-  } catch (_error) {}
+  } catch (error) {}
 })()));
 
 utils = require('./yayson/utils')(_, Q);
@@ -220,7 +220,7 @@ module.exports = function(utils, adapter) {
           return function(d) {
             return data = {
               id: _this.constructor.adapter.id(d),
-              type: presenter.prototype.type
+              type: typeof presenter.prototype.type === 'function' ? presenter.prototype.type(d) : presenter.prototype.type
             };
           };
         })(this);

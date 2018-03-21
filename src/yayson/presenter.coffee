@@ -53,7 +53,7 @@ module.exports = (utils, adapter) ->
         buildData = (d) =>
           data = 
             id: @constructor.adapter.id d
-            type: presenter::type
+            type: if typeof presenter::type == 'function' then presenter::type(d) else presenter::type
         build = (d) =>
           rel = {}
           if d?
